@@ -117,8 +117,9 @@ class StdImageField(ImageField):
         '''
         Specify form field and widget to be used on the forms
         '''
-        kwargs['widget'] = DelAdminFileWidget
-        kwargs['form_class'] = StdImageFormField
+        if self.blank:
+            kwargs['widget'] = DelAdminFileWidget
+            kwargs['form_class'] = StdImageFormField
         return super(StdImageField, self).formfield(**kwargs)
 
     def save_form_data(self, instance, data):

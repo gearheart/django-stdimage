@@ -13,13 +13,13 @@ class DelAdminFileWidget(AdminFileWidget):
     def render(self, name, value, attrs=None):
         input = super(forms.widgets.FileInput, self).render(name, value, attrs)
         if value:
-            item = '<tr><td style="vertical-align: middle;">%s</td><td>%s</td>'
+            item = u'<tr><td style="vertical-align: middle;">%s</td><td>%s</td>'
             output = []
-            output.append('<table style="border-style: none;">')
-            output.append(item % (_('Currently:'), '<a target="_blank" href="%s%s">%s</a>' % (settings.MEDIA_URL, value, value)))
+            output.append(u'<table style="border-style: none;">')
+            output.append(item % (_('Currently:'), u'<a target="_blank" href="%s%s">%s</a>' % (settings.MEDIA_URL, value, value)))
             output.append(item % (_('Change:'), input))
-            output.append(item % (_('Delete') + ':', '<input type="checkbox" name="%s_delete"/>' % name)) # split colon to force "Delete" that is already translated
-            output.append('</table>')
+            output.append(item % (_('Delete') + u':', u'<input type="checkbox" name="%s_delete"/>' % name)) # split colon to force "Delete" that is already translated
+            output.append(u'</table>')
             return mark_safe(u''.join(output))
         else:
             return mark_safe(input)
